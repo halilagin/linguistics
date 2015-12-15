@@ -1,0 +1,11 @@
+!Verb
+
+LEXICON VWishPast
++Past+Wish+1Sg:^m  #;
++Past+Wish+1Sg:^me  #;
++Past+Wish+2Sg:^î  #;
++Past+Wish+3Sg:0  #;
+
++Past+Wish+Pl:^n  #;
++Past+Wish+Pl:^nî  #;
++Past+Wish+Pl:^ne  #;

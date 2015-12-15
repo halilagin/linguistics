@@ -1,0 +1,13 @@
+!adj
+
+LEXICON  Noun
++N:0   #;
++N+MIZF+Sg:ê   #;
++N+MIZF+Sg:yê   #;
++N+FIZF+Sg:a   #;
++N+FIZF+Sg:ya   #;
++N+PIZF+Pl:ên   #;
++N+PIZF+Pl:yên   #;
++N+Indf:ek   #;
++N+Indf:yek   #;
+

@@ -1,0 +1,13 @@
+setup.py
+kurdish/__init__.py
+kurdish/kurmanji/KurdishChars.py
+kurdish/kurmanji/__init__.py
+kurdish/kurmanji/verb/__init__.py
+kurdish/kurmanji/verb/inp/KJVPretagger.py
+kurdish/kurmanji/verb/inp/KJVPretaggerRunner.py
+kurdish/kurmanji/verb/inp/__init__.py
+kurdishmorph.egg-info/PKG-INFO
+kurdishmorph.egg-info/SOURCES.txt
+kurdishmorph.egg-info/dependency_links.txt
+kurdishmorph.egg-info/not-zip-safe
+kurdishmorph.egg-info/top_level.txt

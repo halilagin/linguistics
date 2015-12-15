@@ -1,0 +1,17 @@
+!Verb
+
+
+LEXICON VFuture
+
++V+Future+1Sg:^m  #;
++V+Future+1Sg:^im  #;
++V+Future+1Sg:^me  #;
++V+Future+1Sg:^ime  #;
++V+Future+2Sg:^î  #;
++V+Future+3Sg:^0  #;
+
+
++V+Future+Pl:^n  #;
++V+Future+Pl:^in  #;
++V+Future+Pl:^ne  #;
++V+Future+Pl:^ine  #;

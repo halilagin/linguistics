@@ -1,0 +1,17 @@
+!Verb
+
+LEXICON VPast
++V+Past+1Sg:^m  #;
++V+Past+1Sg:^im  #;
++V+Past+1Sg:^me  #;
++V+Past+1Sg:^ime  #;
++V+Past+2Sg:^î  #;
++V+Past+3Sg:^0  #;
+
+!@C.BI@+V+Future+3Sg:@C.BI@ #;
+
+
++V+Past+Pl:^n  #;
++V+Past+Pl:^in  #;
++V+Past+Pl:^ne  #;
++V+Past+Pl:^ine  #;

@@ -1,0 +1,14 @@
+
+
+clear stack
+
+define V [a|e|i|u|o];
+define C [b|c|d|e|f|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|y|z];
+
+
+define verb bi [ C | V ]+ a n d;
+
+define change  
+
+regex verb;
+
