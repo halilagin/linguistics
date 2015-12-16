@@ -1,0 +1,241 @@
+clear stack
+read lexc biafirand.lexc
+define Lexicon;
+
+
+
+define V [a|e|i|u|o|î|û];
+define C [b|c|d|e|f|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|y|z];
+define CT1 [t];
+define CT2 [n|x];
+
+define Symbol [
+	"^[" 		| 
+ 	"^]" 		| 
+ 	"^VPBI^"	| 
+ 	"^VPDI^"	| 
+ 	"^VPDI^"	| 
+ 	"^TFTR^"	| 
+ 	"^TPST^"	| 
+ 	"^CAND^"	| 
+ 	"^CENE^"	| 
+ 	"^IENE^"	| 
+ 	"^IE^"		| 
+ 	"^FTRE^"	| 
+ 	"^WIBA^"	| 
+ 	"^WIBE^"	| 
+ 	"^INF1^"	| 
+ 	"^INF2^"	| 
+ 	"^VADJ^" 	| 
+ 	"^NEG^" 	| 
+ 	"^PAST^" 	| 
+ 	"^PERF^" 	| 
+ 	"^PASS^" 	| 
+ 	"^ASTEM^" 	| 
+ 	"^MONOV^" 	| 
+ 	"^MONOVOK^" 	| 
+ 	"^OREF^" 	| 
+ 	^HXX^ 	
+ ] ;
+
+!define BIvftrdeld [.a n d.] -> e n e ||   _ ("@R.BI.ON@")  ^  ;
+
+define VStemRoot [
+	 !0 : 0
+	{çû}: {çû}
+];
+
+
+define VStemRootNoAnd [
+	 0 : 0
+	 !{bar}  : {bar} 
+];
+
+define VStem [
+	VStemRoot
+	| VStemRootNoAnd
+];
+
+define VerbPrefixBI [
+	   [{bi}"^VPBI^" ]  
+];
+
+define VerbPrefixDI [
+	   [{di}"^VPDI^" ] 
+];
+
+define VerbSuffixCAND [
+	   ["^CAND^"{and} ] 
+];
+
+define VerbSuffixCENE [
+	   ["^CENE^"{ênê} ] 
+];
+
+define VerbSuffixIENE [
+	   ["^IENE^"{êne} ] 
+];
+
+define VerbSuffixFTRE [
+	    ["^FTRE^"{ê} ]   
+];
+
+define VerbSuffixIE [
+	   ["^IE^"{e} ] 
+];
+
+define VerbSuffixWIBA [
+	   ["^WIBA^"{iba} ] 
+];
+
+define VerbSuffixWIBE [
+	   ["^WIBE^"{ibe} ] 
+];
+
+define VerbSuffixINF1 [
+	   ["^INF1^"{in} ] 
+];
+
+define VerbSuffixINF2 [
+	   ["^INF2^"{în} ] 
+];
+
+define VerbPrefixes [
+	  VerbPrefixBI
+	| VerbPrefixDI
+];
+
+!define VerbWithAnd [
+!	 [ [VStemRootNoAnd "+Causative" ]:[VStemRootNoAnd VerbSuffixCAND] ]
+!];
+
+!define Verbs [ 
+!	VerbWithAnd
+!	];
+
+
+define Lex [
+	   [ [VStemRoot "+Past" ]:[ VStemRoot] ]
+	 | [ [VStemRoot "+PresentAspect" "+Past" ]:[ VerbPrefixDI VStemRoot] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Past" ]:[ VStemRootNoAnd VerbSuffixCAND] ]
+	 | [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past" ]:[ VerbPrefixDI VStemRootNoAnd VerbSuffixCAND] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Future" ]:[ VerbPrefixBI VStemRootNoAnd VerbSuffixCENE] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Imperative" ]:[ VerbPrefixBI VStemRootNoAnd VerbSuffixIENE] ]
+	 | [ [VStemRoot  "+Imperative" ]:[ VerbPrefixBI VStemRoot VerbSuffixIE] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Present" ]:[ VerbPrefixDI  VStemRootNoAnd VerbSuffixCENE] ]
+	 | [ [VStemRoot "+Past" "+Wish" ]:[ (VerbPrefixBI) VStemRoot VerbSuffixWIBA] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Past" "+Wish" ]:[ (VerbPrefixBI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
+
+	 | [ [VStemRoot  "+Future" ]:[ VerbPrefixBI VStemRoot VerbSuffixFTRE] ]
+	 | [ [VStemRoot "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot VerbSuffixWIBA] ]
+	 | [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past"  "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBE] ]
+	 | [ [VStemRoot  "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot  VerbSuffixWIBE] ]
+
+	 | [ [VStemRootNoAnd "+INF"  ]:[  VStemRootNoAnd VerbSuffixCAND VerbSuffixINF1] ]
+
+	 | [ [VStemRoot "+INF"  ]:[  VStemRoot [ VerbSuffixINF1 | VerbSuffixINF2] ] ]
+];
+
+define InfinitiveVowelRules [
+	  [ î -> i || CT1  "^INF2^" _ n  ]	
+	.o. [ i -> î || CT2  "^INF1^" _ n  ]	
+	.o. [ i -> î || CT2  "^INF2^" _ n  ]	
+];
+
+
+
+define DeleteDoubleIForInfinitive [
+       [ î -> 0 || î["^INF1^"|"^INF2^"] _ n]
+   .o. [ î -> 0 || i["^INF1^"|"^INF2^"] _ n]
+   .o. [ i -> 0 || i["^INF1^"|"^INF2^"] _ n]
+   .o. [ i -> 0 || î["^INF1^"|"^INF2^"] _ n]
+];
+
+define DeleteDoubleIForWish [
+       [ i -> 0 || [î|i] "^WIBA^" _ b a ]
+       .o. [ i -> 0 || [î|i] "^WIBE^" _ b e ]
+];
+
+define DeleteIBeforeFutureE [
+       [ î -> 0 || _ "^FTRE^" ê ]
+];
+
+define DeleteIBeforeIE [
+       [ î -> 0 || _ "^IE^" e ]
+];
+
+define DeleteIOfWIBAAfterA [
+       [ i -> 0 || a "^WIBA^" _ b a ]
+       .o. [ i -> 0 || a "^WIBE^" _ b e ]
+];
+
+define DltABfrEFTREIE [
+       [ a -> 0 || _ "^FTRE^" ê ]
+       .o. [ a -> 0 || _ "^IE^" e ]
+];
+
+define DltUBfrEFTREIE [
+       [ û -> 0 || _ "^FTRE^" ê ]
+       .o. [ û -> 0 || _ "^IE^" e ]
+       .o. [ i -> 0 || û "^WIBA^" _ b a ]
+       .o. [ i -> 0 || û "^WIBE^" _ b e ]
+       .o. [ {bû} -> 0 || d i "^VPDI^" _ "^WIBA^"  b a ]
+       .o. [ {bû} -> 0 || d i "^VPDI^" _ "^WIBE^"  b e ]
+];
+
+define DeletePrefixBIE [
+       [ i -> 0 ||  b _ "^VPBI^" "^CENE^" ê ]
+       .o. [ i -> 0 ||  b _ "^VPBI^" "^CENE^" ê ]
+       .o. [ i -> 0 ||  b _ "^VPBI^" "^IENE^" ê ]
+];
+
+
+define PhoneticDeletions [
+	DeleteDoubleIForInfinitive .o. DeleteDoubleIForWish .o. DeleteIBeforeFutureE .o. DeletePrefixBIE .o. DeleteIBeforeIE .o. DeleteIOfWIBAAfterA .o. DltABfrEFTREIE .o. DltUBfrEFTREIE
+];
+
+
+define MorphRules [ 
+		[  [.a n d.] -> e n e ||  "^VPBI^" VStemRootNoAnd "^CAND^"  _ .#. ]
+	 ];
+
+define IrregularVerbMorph [ 
+		[  {axaft} -> {axivî} ||  _ "^WIBA^"    ]
+		| [  {axaft} -> {axivî} ||  _ "^WIBE^"    ]
+		| [  {axaft} -> {axivî} ||  _ "^FTRE^"    ]
+		| [  {axaft} -> {axiv} ||  _ "^IE^"    ]
+		| [  {ir} -> 0 ||   "^VPBI^" k _ "^IE^" e     ]
+		| [  {ir} -> 0 ||   "^VPBI^" k _ "^FTRE^" ê     ]
+		| [  {t} -> v ||   "^VPBI^" k e _ "^IE^" e     ]
+		| [  {t} -> v ||   "^VPBI^" k e _ "^FTRE^" ê     ]
+	 ];
+
+define Rules [
+	MorphRules
+	.o. IrregularVerbMorph
+	.o. InfinitiveVowelRules
+	.o. PhoneticDeletions
+];
+
+define ErrornousGenerations [
+	["^CAND^" {and} "^WIBA^" {iba}]
+	
+];
+
+!# Cleanup: remove morpheme boundaries
+define CleanErrors ErrornousGenerations -> 0;
+define Cleanup Symbol  -> 0;
+
+define Grammar 
+           Lex
+           .o. Rules 
+           !.o. Lexicon 
+           !.o. VerbSuffixes
+	   !.o. CleanErrors	
+	   .o. Cleanup	
+           ;
+
+regex Grammar;
+
+save stack biafirand.fst

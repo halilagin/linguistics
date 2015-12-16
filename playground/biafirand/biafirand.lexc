@@ -1,0 +1,19 @@
+Multichar_Symbols +N +V +PastPart +Past +PresPart +3P +Sg +Pl BI+ @U.PRFX.BI@ @D.PRFX.BI@ @C.PRFX.BI@
+
+
+LEXICON Root
+Verb ;
+
+LEXICON Verb
+afir   VPastNoAnd;
+ajot   VPast;
+
+LEXICON VPastNoAnd
+and	VPastAnd;
+
+LEXICON VPastAnd
++V+Past:0  #;
+
+LEXICON VPast
++V+Past:0  #;
+
