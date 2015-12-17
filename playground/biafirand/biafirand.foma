@@ -22,11 +22,13 @@ define Symbol [
  	"^IENE^"	| 
  	"^IE^"		| 
  	"^FTRE^"	| 
+ 	"^PSNTDI^"	| 
+ 	"^PSNTDIPOST^"	| 
  	"^WIBA^"	| 
  	"^WIBE^"	| 
  	"^INF1^"	| 
  	"^INF2^"	| 
- 	"^VADJ^" 	| 
+ 	":" 		| !PB prefix boundary 
  	"^NEG^" 	| 
  	"^PAST^" 	| 
  	"^PERF^" 	| 
@@ -42,13 +44,16 @@ define Symbol [
 
 define VStemRoot [
 	 !0 : 0
-	{çû}: {çû}
+	{der:xist}: {der:xist}
 ];
+
+! bi and di are prefixes of  imperative&aspect and aspect, respectively. These are not included in the list below, because their places change according to syntactic rules. The prefixes below are always prefixed in the same slot in the template morphology of Kurdish.
+define VerbPrefixes [{der} | {ber} | {da} | {pê} | {lê} | {jê}  | {hil} | {ser} | {na} | {ne} | {ve} | {vê} | {ra} | {çê} | {rû} | {tê}  ];
 
 
 define VStemRootNoAnd [
 	 0 : 0
-	 !{bar}  : {bar} 
+	 !{dakut}  : {dakut} 
 ];
 
 define VStem [
@@ -62,6 +67,10 @@ define VerbPrefixBI [
 
 define VerbPrefixDI [
 	   [{di}"^VPDI^" ] 
+];
+
+define VerbPrefixPSNTDI [
+	   [{di}"^PSNTDI^" ] 
 ];
 
 define VerbSuffixCAND [
@@ -100,10 +109,6 @@ define VerbSuffixINF2 [
 	   ["^INF2^"{în} ] 
 ];
 
-define VerbPrefixes [
-	  VerbPrefixBI
-	| VerbPrefixDI
-];
 
 !define VerbWithAnd [
 !	 [ [VStemRootNoAnd "+Causative" ]:[VStemRootNoAnd VerbSuffixCAND] ]
@@ -128,7 +133,8 @@ define Lex [
 
 	 | [ [VStemRoot  "+Future" ]:[ VerbPrefixBI VStemRoot VerbSuffixFTRE] ]
 	 | [ [VStemRoot "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot VerbSuffixWIBA] ]
-	 | [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past"  "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
+	 | [ [VStemRoot  "+Present"  ]:[ VerbPrefixPSNTDI VStemRoot "^PSNTDIPOST^" ] ]
+	 !| [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past"  "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
 	 | [ [VStemRootNoAnd "+Causative" "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBE] ]
 	 | [ [VStemRoot  "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot  VerbSuffixWIBE] ]
 
@@ -190,9 +196,13 @@ define DeletePrefixBIE [
        .o. [ i -> 0 ||  b _ "^VPBI^" "^IENE^" ê ]
 ];
 
+define DltIBfrEPSNT [
+       [ î -> e ||  _ "^PSNTDIPOST^"   ]
+       .o. [ û -> e ||  _ "^PSNTDIPOST^"   ]
+];
 
 define PhoneticDeletions [
-	DeleteDoubleIForInfinitive .o. DeleteDoubleIForWish .o. DeleteIBeforeFutureE .o. DeletePrefixBIE .o. DeleteIBeforeIE .o. DeleteIOfWIBAAfterA .o. DltABfrEFTREIE .o. DltUBfrEFTREIE
+	DltIBfrEPSNT .o. DeleteDoubleIForInfinitive .o. DeleteDoubleIForWish .o. DeleteIBeforeFutureE .o. DeletePrefixBIE .o. DeleteIBeforeIE .o. DeleteIOfWIBAAfterA .o. DltABfrEFTREIE .o. DltUBfrEFTREIE  
 ];
 
 
@@ -200,27 +210,99 @@ define MorphRules [
 		[  [.a n d.] -> e n e ||  "^VPBI^" VStemRootNoAnd "^CAND^"  _ .#. ]
 	 ];
 
+define IrrPSNTVerbANI [
+	 [  {di} -> {tê} || _ "^PSNTDI^" a n î   ] 
+ 	.o. [  {anî} -> {nê} ||  t ê "^PSNTDI^" _   ]
+];
+
+define IrrPSNTVerbAVET [
+	 [  {di} -> {t} || _ "^PSNTDI^" a v ê t   ] 
+ 	.o. [  {t} -> {je} ||  t  "^PSNTDI^" a v ê _   ]
+];
+
+define IrrPSNTVerbAXAFT [
+	 [  {aft} -> {ive} ||  "^PSNTDI^" a x _   ] 
+];
+define IrrPSNTVerbAXI [
+	   {î} -> {îne} ||  "^PSNTDI^" a x _    
+];
+
+define IrrPSNTVerbDA [
+	   [ {a} -> {e} ||  "^PSNTDI^" d _ .#. ]
+];
+
+define IrrPSNTVerbKET [
+	   {t} -> {ve} ||  "^PSNTDI^" k e _ 
+];
+
+define IrrPSNTVerbDAGIRT [
+	    [ {dagirt} -> {digire} ||  "^PSNTDI^" _ "^PSNTDIPOST^" ]
+	   | [ {dagirt} -> {gire} ||  "^PSNTDI^" _ "^PSNTDIPOST^" ]
+];
+
+define IrregularVerbPSNT [
+	[  {ajot} -> {ajo} ||   "^PSNTDI^" _    ]
+	.o. IrrPSNTVerbANI
+	.o. IrrPSNTVerbAVET
+	.o. IrrPSNTVerbAXAFT
+	.o. IrrPSNTVerbAXI
+	.o. IrrPSNTVerbDA
+	.o. IrrPSNTVerbKET
+	.o. IrrPSNTVerbDAGIRT
+];
+
 define IrregularVerbMorph [ 
 		[  {axaft} -> {axivî} ||  _ "^WIBA^"    ]
-		| [  {axaft} -> {axivî} ||  _ "^WIBE^"    ]
-		| [  {axaft} -> {axivî} ||  _ "^FTRE^"    ]
-		| [  {axaft} -> {axiv} ||  _ "^IE^"    ]
-		| [  {ir} -> 0 ||   "^VPBI^" k _ "^IE^" e     ]
-		| [  {ir} -> 0 ||   "^VPBI^" k _ "^FTRE^" ê     ]
-		| [  {t} -> v ||   "^VPBI^" k e _ "^IE^" e     ]
-		| [  {t} -> v ||   "^VPBI^" k e _ "^FTRE^" ê     ]
+		.o. [  {axaft} -> {axivî} ||  _ "^WIBE^"    ]
+		.o. [  {axaft} -> {axivî} ||  _ "^FTRE^"    ]
+		.o. [  {axaft} -> {axiv} ||  _ "^IE^"    ]
+		.o. [  {ir} -> 0 ||   "^VPBI^" k _ "^IE^" e     ]
+		.o. [  {ir} -> 0 ||   "^VPBI^" k _ "^FTRE^" ê     ]
+		.o. [  {t} -> v ||   "^VPBI^" k e _ "^IE^" e     ]
+		.o. [  {t} -> v ||   "^VPBI^" k e _ "^FTRE^" ê     ]
 	 ];
+
+define IrrVerbXIST [
+	  [ {xist} -> {xe} || d i "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {xist} -> {x} || b i "^VPBI^" _ "^FTRE^"  ]
+	.o. [ {xist} -> {x} || b i "^VPBI^" _ "^IE^"  ]
+	.o. [ {xist} -> {x} || {:}  _ "^FTRE^"  ]
+	.o. [ {xist} -> {x} || {:} _ "^IE^"  ]
+	.o. [ {xist} -> {xe} || {:} _ "^PSNTDIPOST^"  ]
+];
+
+define IrregularVerbs [
+	IrregularVerbMorph
+	.o. IrrVerbXIST
+]; 
+
+define ReorderPrefixBI [
+	[ {:} -> {:bi^VPBI^}   ||  b i "^VPBI^" VerbPrefixes  _   ]
+	.o. [ {bi} -> 0   ||  _ "^VPBI^" VerbPrefixes  {:}   ]
+	.o. [ "^VPBI^" -> 0   ||  _ VerbPrefixes  {:}   ]
+];
+
+define ReorderPrefixDI [
+	[ {:} -> {:di^VPDI^}   ||  d i "^VPDI^" VerbPrefixes  _   ]
+	.o. [ {di} -> 0   ||  _ "^VPDI^" VerbPrefixes  {:}   ]
+	.o. [ "^VPDI^" -> 0   ||  _ VerbPrefixes  {:}   ]
+];
+
+define ReorderPrefixes [
+	ReorderPrefixBI .o. ReorderPrefixDI
+];
 
 define Rules [
 	MorphRules
-	.o. IrregularVerbMorph
+	.o. IrregularVerbs
+	.o. IrregularVerbPSNT
+	.o. ReorderPrefixes
 	.o. InfinitiveVowelRules
 	.o. PhoneticDeletions
 ];
 
 define ErrornousGenerations [
 	["^CAND^" {and} "^WIBA^" {iba}]
-	
 ];
 
 !# Cleanup: remove morpheme boundaries
@@ -233,7 +315,7 @@ define Grammar
            !.o. Lexicon 
            !.o. VerbSuffixes
 	   !.o. CleanErrors	
-	   .o. Cleanup	
+	   !.o. Cleanup	
            ;
 
 regex Grammar;
