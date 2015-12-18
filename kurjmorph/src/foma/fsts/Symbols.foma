@@ -1,0 +1,39 @@
+
+define Symbol [
+	"^[" 		| 
+ 	"^]" 		| 
+ 	"^VPBI^"	| 
+ 	"^VPDI^"	| 
+ 	"^TFTR^"	| 
+ 	"^TPST^"	| 
+ 	"^CAND^"	| 
+ 	"^CENE^"	| 
+ 	"^IENE^"	| 
+ 	"^IE^"		| 
+ 	"^FTRE^"	| 
+ 	"^PSNTDI^"	| 
+ 	"^PSNTDIPOST^"	| 
+ 	"^WIBA^"	| 
+ 	"^WIBE^"	| 
+ 	"^INF1^"	| 
+ 	"^INF2^"	| 
+ 	"^PB^" 		| 
+ 	"^PAST^" 	| 
+	"'"		|! prefix boundary 
+ 	^HXX^ 	
+ ] ;
+
+
+define VerbPrefixBI [ [{bi}"^VPBI^" ] ];
+define VerbPrefixDI [ [{di}"^VPDI^" ] ];
+define VerbPrefixPSNTDI [ [{di}"^PSNTDI^" ] ];
+define VerbSuffixCAND [ ["^CAND^"{and} ] | ["^CAND^"{end} ] ];
+define VerbSuffixCENE [ ["^CENE^"{ênê} ] ];
+define VerbSuffixIENE [ ["^IENE^"{êne} ] ];
+define VerbSuffixFTRE [ ["^FTRE^"{ê} ] ];
+define VerbSuffixIE [ ["^IE^"{e} ] ];
+define VerbSuffixWIBA [ ["^WIBA^"{iba} ] ];
+define VerbSuffixWIBE [ ["^WIBE^"{ibe} ] ];
+define VerbSuffixINF1 [ ["^INF1^"{in} ] ];
+define VerbSuffixINF2 [ ["^INF2^"{în} ] ];
+

@@ -1,0 +1,68 @@
+define InfinitiveVowelRules [
+	  [ î -> i || CT1  "^INF2^" _ n  ]	
+	.o. [ i -> î || CT2  "^INF1^" _ n  ]	
+	.o. [ i -> î || CT2  "^INF2^" _ n  ]	
+];
+
+
+
+define DeleteVowelsForInfinitive [
+       [ î -> 0 || î["^INF1^"|"^INF2^"] _ n]
+   .o. [ î -> 0 || i["^INF1^"|"^INF2^"] _ n]
+   .o. [ i -> 0 || i["^INF1^"|"^INF2^"] _ n]
+   .o. [ i -> 0 || î["^INF1^"|"^INF2^"] _ n]
+   .o. [ e -> 0 || _ ["^INF1^"|"^INF2^"] [i|î] n]
+];
+
+define DeleteDoubleIForWish [
+       [ i -> 0 || [î|i] "^WIBA^" _ b a ]
+       .o. [ i -> 0 || [î|i] "^WIBE^" _ b e ]
+];
+
+define DeleteIBeforeFutureE [
+       [ î -> 0 || _ "^FTRE^" ê ]
+];
+
+define DeleteIBeforeIE [
+       [ î -> 0 || _ "^IE^" e ]
+];
+
+define DeleteVowelWIBA [
+       [ i -> 0 || [C & ~y]  [a|e] ["^WIBA^"|"^WIBE^"] _ b [a|e] ]
+       .o. [ e -> 0 || y _ ["^WIBE^"|"^WIBA^"] i b [e|a] ]
+];
+
+define DltVowelsBfrEFTREIE [
+       [ a -> 0 || _ ["^FTRE^" | "^IE^"] [ê|e] ]
+   .o. [ e -> 0 || _ ["^FTRE^" | "^IE^"] [ê|e] ]
+];
+
+define DltUBfrEFTREIE [
+       [ û -> 0 || _ "^FTRE^" ê ]
+       .o. [ û -> 0 || _ "^IE^" e ]
+       .o. [ i -> 0 || û "^WIBA^" _ b a ]
+       .o. [ i -> 0 || û "^WIBE^" _ b e ]
+       .o. [ {bû} -> 0 || d i "^VPDI^" _ "^WIBA^"  b a ]
+       .o. [ {bû} -> 0 || d i "^VPDI^" _ "^WIBE^"  b e ]
+];
+
+define DeletePrefixBIE [
+       [ i -> 0 ||  b _ "^VPBI^" "^CENE^" ê ]
+       .o. [ i -> 0 ||  b _ "^VPBI^" "^CENE^" ê ]
+       .o. [ i -> 0 ||  b _ "^VPBI^" "^IENE^" ê ]
+];
+
+define DltIBfrEPSNT [
+       [ î -> e ||  _ "^PSNTDIPOST^"   ]
+       .o. [ û -> e ||  _ "^PSNTDIPOST^"   ]
+];
+
+
+define VerbAndFutureRule [ 
+		[  [.a n d.] -> e n e ||  "^VPBI^" VStemRootNoAnd "^CAND^"  _ .#. ]
+	 ];
+
+define PhoneticDeletions [
+	DltIBfrEPSNT .o. DeleteVowelsForInfinitive .o. DeleteDoubleIForWish .o. DeleteIBeforeFutureE .o. DeletePrefixBIE .o. DeleteIBeforeIE .o. DeleteVowelWIBA .o. DltVowelsBfrEFTREIE .o. DltUBfrEFTREIE  
+];
+

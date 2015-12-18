@@ -1,0 +1,7 @@
+
+define VerbPrefixes [
+		[ {der} | {ber} | {da} | {pê} | {lê} | {jê}  | {hil} | {ser} | {na} | {ne} | {ve} | {vê} | {ra} | {çê} | {rû} | {tê} | {wer} | {hel} ] 
+
+	| Proverbs
+
+];

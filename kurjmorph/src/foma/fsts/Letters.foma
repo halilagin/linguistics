@@ -1,0 +1,5 @@
+define V [a|e|i|u|o|î|û];
+define C [b|c|d|e|f|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|y|z];
+define CT1 [t];
+define CT2 [n|x];
+

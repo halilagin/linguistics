@@ -1,0 +1,13 @@
+define VStemRoot [
+{afirand}	:{afirand}
+|{ajot}	:{ajot}
+|{aland}	:{aland}
+|{anî}	:{anî}
+|{avêt}	:{avêt}
+|{axaft}	:{axaft}
+|{axî}	:{axî}
+|{ba'da}	:{ba'da}
+|{barand}	:{barand}
+|{barî}	:{barî}
+
+];

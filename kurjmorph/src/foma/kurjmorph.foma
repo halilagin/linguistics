@@ -1,0 +1,34 @@
+clear stack
+
+
+source fsts/Letters.foma
+source fsts/Symbols.foma
+source fsts/Proverbs.foma
+
+
+
+
+! bi and di are prefixes of  imperative&aspect and aspect, respectively. These are not included in the list below, because their places change according to syntactic rules. The prefixes below are always prefixed in the same slot in the template morphology of Kurdish.
+
+source fsts/VerbPrefixes.foma
+source fsts/VerbStems.foma
+! suffix -and is chopped from these verb stems.
+source fsts/VerbStemsAND.foma
+source fsts/VerbTensesAndAffixes.foma
+source fsts/VerbPhonology.foma
+source fsts/IrregularVerbs.foma
+source fsts/ReorderVerbPrefixes.foma
+
+
+define VerbRules [ VerbTensesAndAffixes .o. VerbAndFutureRule .o. IrregularVerbs .o. IrregularVerbPSNT .o. ReorderPrefixes .o. InfinitiveVowelRules .o. PhoneticDeletions
+];
+
+
+!# Cleanup: remove morpheme boundaries
+define Cleanup Symbol  -> 0;
+
+define  Grammar  VerbRules .o. Cleanup	;
+
+regex Grammar;
+
+save stack kurjmorph.fst

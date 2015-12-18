@@ -47,6 +47,30 @@ class KJVPretagger(object):
 					break
 		out.close()
 
+	def doPastTenseVerbFoma(self,fileName):
+		out = open(self.outputdir+"/"+fileName, 'w')
+		self.indice=5
+		with open(self.inputfile, 'rb') as csvfile:
+			reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+			counter=0
+			out.write("define VStemRoot [\n")
+			for i,row in enumerate(reader):
+				if i==0:
+					continue
+				verb = row[self.indice]
+				if not verb:
+					continue
+				line =  "{%s}\t:{%s}\n" % (row[self.indice], row[self.indice])
+				if i>1:
+					line =  "|" + line
+				out.write(line)
+				counter+=1
+				if counter==self.cutoff:
+					break
+		out.write("\n];\n")
+		out.close()
+
+
 	def cmd(self):
 		if (len(sys.argv)!=4):
 			print "%s indice cutoff tagname" % (sys.argv[0])

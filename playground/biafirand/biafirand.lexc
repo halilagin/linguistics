@@ -1,19 +1,13 @@
-Multichar_Symbols +N +V +PastPart +Past +PresPart +3P +Sg +Pl BI+ @U.PRFX.BI@ @D.PRFX.BI@ @C.PRFX.BI@
+Multichar_Symbols +N +V +PresentAspect +Causative +Imperative +Future +Present +Wish +INF  +Past +PresPart +3P +Sg +Pl 
 
 
 LEXICON Root
-Verb ;
+afir   VStemRootNoAnd;
+ajot   VStemRoot;
 
-LEXICON Verb
-afir   VPastNoAnd;
-ajot   VPast;
+LEXICON VStemRootNoAnd
++V:0 #;
 
-LEXICON VPastNoAnd
-and	VPastAnd;
 
-LEXICON VPastAnd
-+V+Past:0  #;
-
-LEXICON VPast
-+V+Past:0  #;
-
+LEXICON VStemRoot
++V:0 #;

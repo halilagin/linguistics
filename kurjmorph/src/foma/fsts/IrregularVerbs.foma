@@ -1,0 +1,253 @@
+define IrrPSNTVerbANI [
+	 [  {di} -> {tê} || _ "^PSNTDI^" a n î   ] 
+ 	.o. [  {anî} -> {nê} ||  t ê "^PSNTDI^" _   ]
+];
+
+define IrrPSNTVerbAVET [
+	 [  {di} -> {t} || _ "^PSNTDI^" a v ê t   ] 
+ 	.o. [  {t} -> {je} ||  t  "^PSNTDI^" a v ê _   ]
+];
+
+define IrrPSNTVerbAXAFT [
+	 [  {aft} -> {ive} ||  "^PSNTDI^" a x _   ] 
+];
+define IrrPSNTVerbAXI [
+	   {î} -> {îne} ||  "^PSNTDI^" a x _    
+];
+
+define IrrPSNTVerbDA [
+	   [ {a} -> {e} ||  "^PSNTDI^" d _ .#. ]
+];
+
+define IrrPSNTVerbKET [
+	   {t} -> {ve} ||  "^PSNTDI^" k e _ 
+];
+
+define IrrPSNTVerbDAGIRT [
+	    [ {dagirt} -> {digire} ||  "^PSNTDI^" _ "^PSNTDIPOST^" ]
+	   | [ {dagirt} -> {gire} ||  "^PSNTDI^" _ "^PSNTDIPOST^" ]
+];
+
+define IrregularVerbPSNT [
+	[  {ajot} -> {ajo} ||   "^PSNTDI^" _    ]
+	.o. [  a -> e  ||  _ "^PSNTDIPOST^"     ]
+	.o. IrrPSNTVerbANI
+	.o. IrrPSNTVerbAVET
+	.o. IrrPSNTVerbAXAFT
+	.o. IrrPSNTVerbAXI
+	.o. IrrPSNTVerbDA
+	.o. IrrPSNTVerbKET
+	.o. IrrPSNTVerbDAGIRT
+];
+
+define IrregularVerbMorph [ 
+		[  {axaft} -> {axivî} ||  _ "^WIBA^"    ]
+		.o. [  {axaft} -> {axivî} ||  _ "^WIBE^"    ]
+		.o. [  {axaft} -> {axivî} ||  _ "^FTRE^"    ]
+		.o. [  {axaft} -> {axiv} ||  _ "^IE^"    ]
+		.o. [  {ir} -> 0 ||   "^VPBI^" k _ "^IE^" e     ]
+		.o. [  {ir} -> 0 ||   "^VPBI^" k _ "^FTRE^" ê     ]
+		.o. [  {t} -> v ||   "^VPBI^" k e _ "^IE^" e     ]
+		.o. [  {t} -> v ||   "^VPBI^" k e _ "^FTRE^" ê     ]
+	 ];
+
+define IrrVerbXIST [
+	  [ {xist} -> {xe} || d i "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {xist} -> {x} ||   _ "^FTRE^"  ]
+	.o. [ {xist} -> {x} ||  _ "^IE^"  ]
+	.o. [ {xist} -> {x} || {'}  _ "^FTRE^"  ]
+	.o. [ {xist} -> {x} || {'} _ "^IE^"  ]
+	.o. [ {xist} -> {xe} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+define IrrVerbGIRT [
+	  [ {girt} -> {gire} || d i "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {girt} -> {gir} ||   _ "^FTRE^"  ]
+	.o. [ {girt} -> {gir} ||  _ "^IE^"  ]
+	.o. [ {girt} -> {gir} || {'}  _ "^FTRE^"  ]
+	.o. [ {girt} -> {gir} || {'} _ "^IE^"  ]
+	.o. [ {girt} -> {gire} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+define IrrVerbBIJART [
+	  [ {bijart} -> {bijêrê} || d i "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {bijart} -> {bijêr} ||   _ "^FTRE^"  ]
+	.o. [ {bijart} -> {bijêr} ||  _ "^IE^"  ]
+	.o. [ {bijart} -> {bijêr} || {'}  _ "^FTRE^"  ]
+	.o. [ {bijart} -> {bijêr} || {'} _ "^IE^"  ]
+	.o. [ {bijart} -> {bijêrê} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+define IrrVerbJEKIR [
+	  [ {kir} -> {ke} || d i "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {kir} -> {bik} ||   _ "^FTRE^"  ]
+	.o. [ {kir} -> {bike} ||  _ "^IE^"  ]
+	.o. [ {kir} -> {k} || {'}  _ "^FTRE^"  ]
+	.o. [ {kir} -> {k} || {'} _ "^IE^"  ]
+	.o. [ {kir} -> {ke} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+define IrrVerbXWEST [
+	  [ {xwest} -> {xwaze} ||  "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {xwest} -> {xwaz} ||   _ "^FTRE^"  ]
+	.o. [ {xwest} -> {xwaz} ||  _ "^IE^"  ]
+];
+
+
+define IrrVerbXWAR [
+	  [ {xwar} -> {xwe} ||  "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {xwar} -> {xw} ||   _ "^FTRE^"  ]
+	.o. [ {xwar} -> {xwe} ||  _ "^IE^"  ]
+	.o. [ {xwar} -> {xw} || {'}  _ "^FTRE^"  ]
+	.o. [ {xwar} -> {xwe} || {'} _ "^IE^"  ]
+	.o. [ {xwar} -> {xwe} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+
+define IrrVerbANI [
+	[  [ {anî} -> {tênê} ||  "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {anî} -> {bênê} ||   _ "^FTRE^"  ]
+	.o. [ {anî} -> {bêne} ||  _ "^IE^"  ]
+	.o. [ {anî} -> {bên} || {'}  _ "^FTRE^"  ]
+	.o. [ {anî} -> {bêne} || {'} _ "^IE^"  ]
+	.o. [ {anî} -> {bênê} || {'} _ "^PSNTDIPOST^"  ]
+	]
+	.o. [
+		[ {bi}->0 || _ "^VPBI^" b ê n [e|ê] ]
+	    .o. [ {di}->0 || _ "^PSNTDI^" t ê n [e|ê] ]
+	]
+];
+
+define IrrVerbGIHIST [
+	  [ {şt} -> {je} ||  "^PSNTDI^" g i h i _ "^PSNTDIPOST^"  ]
+	.o. [ {şt} -> {j} ||   g i h i  _ "^FTRE^"  ]
+	.o. [ {şt} -> {j} ||  g i h i  _ "^IE^"  ]
+	.o. [ {şt} -> {j} || {'}  g i h i  _ "^FTRE^"  ]
+	.o. [ {şt} -> {j} || {'}  g i h i _ "^IE^"  ]
+	.o. [ {şt} -> {j} || {'}  g i h i _ "^PSNTDIPOST^"  ]
+];
+
+
+define IrrVerbSUST [
+	 [ 
+	      [ {şuşt} -> {şo} ||  "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	  .o. [ {şuşt} -> {şo} ||   _ "^FTRE^"  ]
+	  .o. [ {şuşt} -> {şo} ||  _ "^IE^"  ]
+	  .o. [ {şuşt} -> {şo} || {'}  _ "^FTRE^"  ]
+	  .o. [ {şuşt} -> {şo} || {'} _ "^IE^"  ]
+	  .o. [ {şuşt} -> {şo} || {'} _ "^PSNTDIPOST^"  ]
+	]
+        .o.   [
+	  	   [ ê -> 0 ||    "^FTRE^" _ ]
+	       .o. [ e -> 0 ||    "^IE^" _ ]
+
+	]
+   
+];
+
+
+define IrrVerbSAND [
+	  [ {şand} -> {şênê} ||  "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {şand} -> {şênê} ||   _ "^FTRE^"  ]
+	.o. [ {şand} -> {şêne} ||  _ "^IE^"  ]
+	.o. [ {şand} -> {şênê} || {'}  _ "^FTRE^"  ]
+	.o. [ {şand} -> {şêne} || {'} _ "^IE^"  ]
+	.o. [ {şand} -> {şênê} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+
+define IrrVerbHAT [
+	  [ {di} -> 0 ||  _ "^PSNTDI^" h a t  ]
+	.o. [ {bi} -> 0 ||   _ ["^FTRE^" | "^IE^" | "^VPBI^"] h a t  ]
+	.o. [ {hat} -> {tê} ||  _ "^PSNTDIPOST^"  ]
+	.o. [ {hat} -> {werê} ||   _ "^FTRE^"  ]
+	.o. [ {hat} -> {were} ||  _ "^IE^"  ]
+	.o. [ {hat} -> {werê} || {'}  _ "^FTRE^"  ]
+	.o. [ {hat} -> {were} || {'} _ "^IE^"  ]
+	.o. [ {hat} -> {werê} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+define IrrVerbHIST [
+	  [ {hişt} -> {hêle} || d i  "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {hişt} -> {hêlê} || b i "^VPBI^"  _ "^FTRE^"  ]
+	.o. [ {hişt} -> {hêle} || b i  "^VPBI^" _ "^IE^"  ]
+	.o. [ {hişt} -> {jê} || {'}  _ "^FTRE^"  ]
+	.o. [ {hişt} -> {je} || {'} _ "^IE^"  ]
+	.o. [ {hişt} -> {je} || {'} _ "^PSNTDIPOST^"  ]
+];
+
+define IrrVerbRAHIST [
+	 [ [ {rahişt} -> {raje} ||  "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {rahişt} -> {rajê} ||   _ "^FTRE^"  ]
+	.o. [ {rahişt} -> {raje} ||  _ "^IE^"  ]
+	.o. [ {rahişt} -> {rajê} || {'}  _ "^FTRE^"  ]
+	.o. [ {rahişt} -> {raje} || {'} _ "^IE^"  ]
+	.o. [ {rahişt} -> {raje} || {'} _ "^PSNTDIPOST^"  ]
+	]
+	.o. [  
+		[ {bi}->0  || _ "^VPBI^" r a j [e|ê] ]
+	]
+];
+
+
+define IrrVerbLEYIST [
+	  [ {lêyist} -> {lêyize} || d i "^PSNTDI^" _ "^PSNTDIPOST^"  ]
+	.o. [ {lêyist} -> {lêyiz} ||   _ "^FTRE^"  ]
+	.o. [ {lêyist} -> {lêyiz} ||  _ "^IE^"  ]
+];
+
+
+define IrrVerbKET [
+
+	  [{t} -> {v} ||  "^PSNTDI^" k e _   ]
+	.o.  [{t} -> {v} ||  "^PSNTDI^" k e _  "^PSNTDIPOST^"  ]
+	.o. [ {t} -> {v} ||   k e _ "^FTRE^"  ]
+	.o. [ {t} -> {ve} ||  k e _ "^IE^"  ]
+	.o. [ {t} -> {v} || {'} k e  _ "^FTRE^"  ]
+	.o. [ {t} -> {ve} || {'} k e _ "^IE^"  ]
+	.o. [ {t} -> {ve} || {'} k e _ "^PSNTDIPOST^"  ]
+];
+
+define IrrVerbMA [
+
+	  [{ma} -> {mênê} ||  "^PSNTDI^"  _   ]
+	.o.  [{ma} -> {mênê} ||  "^PSNTDI^"  _  "^PSNTDIPOST^"  ]
+	.o. [ {ma} -> {mênê} ||    _ "^FTRE^"  ]
+	.o. [ {ma} -> {mêne} ||   _ "^IE^"  ]
+];
+
+define IrrVerbDIT [
+	  [{dît} -> {bîne} ||  "^PSNTDI^"  _   ]
+	.o.  [{dît} -> {bîn} ||  "^PSNTDI^"  _  "^PSNTDIPOST^"  ]
+	.o. [ {dît} -> {bîn} ||    _ "^FTRE^"  ]
+	.o. [ {dît} -> {bîn} ||   _ "^IE^"  ]
+];
+
+define IrrVerbFIROT [
+	  [{firot} -> {firoşe} ||  "^PSNTDI^"  _   ]
+	.o.  [{firot} -> {firoş} ||  "^PSNTDI^"  _  "^PSNTDIPOST^"  ]
+	.o. [ {firot} -> {firoş} ||    _ "^FTRE^"  ]
+	.o. [ {firot} -> {firoş} ||   _ "^IE^"  ]
+]; 
+
+define IrregularVerbs [
+	IrregularVerbMorph
+	.o. IrrVerbXIST
+	.o. IrrVerbGIRT
+	.o. IrrVerbKET
+	.o. IrrVerbDIT
+	.o. IrrVerbFIROT
+	.o. IrrVerbBIJART
+	.o. IrrVerbJEKIR
+	.o. IrrVerbLEYIST
+	.o. IrrVerbMA
+	.o. IrrVerbANI
+	.o. IrrVerbXWEST
+	.o. IrrVerbXWAR
+	.o. IrrVerbGIHIST
+	.o. IrrVerbSUST
+	.o. IrrVerbSAND
+	.o. IrrVerbHAT
+	.o. IrrVerbRAHIST
+	.o. IrrVerbHIST
+]; 

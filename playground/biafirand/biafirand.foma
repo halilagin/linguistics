@@ -3,7 +3,6 @@ read lexc biafirand.lexc
 define Lexicon;
 
 
-
 define V [a|e|i|u|o|î|û];
 define C [b|c|d|e|f|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|y|z];
 define CT1 [t];
@@ -41,13 +40,16 @@ define Proverbs [
 	| {hewil} 
 	| {nas} 
 	| {pêk} 
+	| {dest} 
+	| {girê} 
+	| {temaşe} 
 ];
 
 ! bi and di are prefixes of  imperative&aspect and aspect, respectively. These are not included in the list below, because their places change according to syntactic rules. The prefixes below are always prefixed in the same slot in the template morphology of Kurdish.
 
 
 define VerbPrefixes [
-		[ {der} | {ber} | {da} | {pê} | {lê} | {jê}  | {hil} | {ser} | {na} | {ne} | {ve} | {vê} | {ra} | {çê} | {rû} | {tê} ] 
+		[ {der} | {ber} | {da} | {pê} | {lê} | {jê}  | {hil} | {ser} | {na} | {ne} | {ve} | {vê} | {ra} | {çê} | {rû} | {tê} | {wer} | {hel} ] 
 
 	| Proverbs
 
@@ -55,20 +57,16 @@ define VerbPrefixes [
 
 
 
-define VStemRoot [
-	 !0 : 0
-	{anî}: {anî}
-];
+!define VStemRoot [
+!	 !0 : 0
+!	{ra'ket}: {ra'ket}
+!];
 
-define VStemRootNoAnd [
-	 0 : 0
-	 !{xw}  : {xw} 
-];
+!define VStemRootNoAnd [
+!	 0 : 0
+!	 !{afir}  : {afir} 
+!];
 
-define VStem [
-	VStemRoot
-	| VStemRootNoAnd
-];
 
 define VerbPrefixBI [
 	   [{bi}"^VPBI^" ]  
@@ -121,7 +119,7 @@ define VerbSuffixINF2 [
 
 
 
-define VerbLexicon [
+define VerbAffixes [
 	   [ [VStemRoot "+Past" ]:[ VStemRoot] ]
 	 | [ [VStemRoot "+PresentAspect" "+Past" ]:[ VerbPrefixDI VStemRoot] ]
 	 | [ [VStemRootNoAnd "+Causative" "+Past" ]:[ VStemRootNoAnd VerbSuffixCAND] ]
@@ -136,7 +134,7 @@ define VerbLexicon [
 	 | [ [VStemRoot  "+Future" ]:[ VerbPrefixBI VStemRoot VerbSuffixFTRE] ]
 	 | [ [VStemRoot "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot VerbSuffixWIBA] ]
 	 | [ [VStemRoot  "+Present"  ]:[ VerbPrefixPSNTDI VStemRoot "^PSNTDIPOST^" ] ]
-	 !| [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past"  "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
+	 | [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past"  "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
 	 | [ [VStemRootNoAnd "+Causative" "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBE] ]
 	 | [ [VStemRoot  "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot  VerbSuffixWIBE] ]
 
@@ -497,7 +495,8 @@ define ReorderPrefixes [
 ];
 
 define VerbRules [
-	VerbAndFutureRule
+            VerbAffixes
+	.o. VerbAndFutureRule
 	.o. IrregularVerbs
 	.o. IrregularVerbPSNT
 	.o. ReorderPrefixes
@@ -505,22 +504,11 @@ define VerbRules [
 	.o. PhoneticDeletions
 ];
 
-define ErrornousGenerations [
-	["^CAND^" {and} "^WIBA^" {iba}]
-];
 
 !# Cleanup: remove morpheme boundaries
-define CleanErrors ErrornousGenerations -> 0;
 define Cleanup Symbol  -> 0;
 
-define Grammar 
-           VerbLexicon
-           .o. VerbRules 
-           !.o. Lexicon 
-           !.o. VerbSuffixes
-	   !.o. CleanErrors	
-	   !.o. Cleanup	
-           ;
+define  Grammar Lexicon .o. VerbRules .o. Cleanup	;
 
 regex Grammar;
 

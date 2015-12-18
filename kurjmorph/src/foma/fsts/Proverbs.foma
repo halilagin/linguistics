@@ -1,0 +1,11 @@
+
+!proverbs
+define Proverbs [ 
+	{girê} 
+	| {hewil} 
+	| {nas} 
+	| {pêk} 
+	| {dest} 
+	| {girê} 
+	| {temaşe} 
+];

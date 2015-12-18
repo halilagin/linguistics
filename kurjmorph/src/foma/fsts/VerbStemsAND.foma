@@ -1,0 +1,5 @@
+
+define VStemRootNoAnd [
+	 0 : 0
+	 !{afir}  : {afir} 
+];

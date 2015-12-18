@@ -1,0 +1,24 @@
+
+define VerbTensesAndAffixes [
+	   [ [VStemRoot "+Past" ]:[ VStemRoot] ]
+	 | [ [VStemRoot "+PresentAspect" "+Past" ]:[ VerbPrefixDI VStemRoot] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Past" ]:[ VStemRootNoAnd VerbSuffixCAND] ]
+	 | [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past" ]:[ VerbPrefixDI VStemRootNoAnd VerbSuffixCAND] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Future" ]:[ VerbPrefixBI VStemRootNoAnd VerbSuffixCENE] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Imperative" ]:[ VerbPrefixBI VStemRootNoAnd VerbSuffixIENE] ]
+	 | [ [VStemRoot  "+Imperative" ]:[ VerbPrefixBI VStemRoot VerbSuffixIE] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Present" ]:[ VerbPrefixDI  VStemRootNoAnd VerbSuffixCENE] ]
+	 | [ [VStemRoot "+Past" "+Wish" ]:[ (VerbPrefixBI) VStemRoot VerbSuffixWIBA] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Past" "+Wish" ]:[ (VerbPrefixBI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
+
+	 | [ [VStemRoot  "+Future" ]:[ VerbPrefixBI VStemRoot VerbSuffixFTRE] ]
+	 | [ [VStemRoot "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot VerbSuffixWIBA] ]
+	 | [ [VStemRoot  "+Present"  ]:[ VerbPrefixPSNTDI VStemRoot "^PSNTDIPOST^" ] ]
+	 | [ [VStemRootNoAnd "+Causative" "+PresentAspect" "+Past"  "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBA] ]
+	 | [ [VStemRootNoAnd "+Causative" "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRootNoAnd VerbSuffixCAND VerbSuffixWIBE] ]
+	 | [ [VStemRoot  "+Present" "+Wish" ]:[ (VerbPrefixDI) VStemRoot  VerbSuffixWIBE] ]
+
+	 | [ [VStemRootNoAnd "+INF"  ]:[  VStemRootNoAnd VerbSuffixCAND VerbSuffixINF1] ]
+
+	 | [ [VStemRoot "+INF"  ]:[  VStemRoot [ VerbSuffixINF1 | VerbSuffixINF2] ] ]
+];
