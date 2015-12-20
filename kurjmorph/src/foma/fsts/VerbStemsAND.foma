@@ -1,5 +1,5 @@
 
 define VStemRootNoAnd [
-	 0 : 0
-	 !{afir}  : {afir} 
+	 !0 : 0
+	 {afir}  : {afir} 
 ];

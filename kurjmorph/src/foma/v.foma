@@ -1,0 +1,21 @@
+clear stack
+!read lexc kurjmorph.lexc
+!define Lexicon;
+!regex Lexicon;
+!define VStemRoot;
+!regex VStemRoot;
+define VStemRoot [ {revî}:{revî} | {ajot}:{ajot}  ];
+!define VStemRoot [ Lexicon ];
+source fsts/Symbols.foma
+source fsts/VerbTensesAndAffixes.foma
+define Cleanup Symbol  -> 0;
+
+
+define Grammar      VerbTensesAndAffixes   .o.Cleanup  ;
+regex Grammar;
+
+!read regex [ 
+	 ![ VerbTensesAndAffixes] 
+!] ;
+
+save stack v.fst

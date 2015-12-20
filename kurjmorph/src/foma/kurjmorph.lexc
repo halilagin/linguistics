@@ -1,0 +1,11 @@
+Multichar_Symbols +V +Inf +Adj +Pl +Past +PresentAspect
+
+LEXICON Root
+
+
+ajot:ajot VStemRoot;
+revî:revî VStemRoot;
+
+
+LEXICON VStemRoot
+ +V:0 #;

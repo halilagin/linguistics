@@ -1,21 +1,19 @@
 define ReorderPrefixBI [
 	[
-	[0->0] 
-	| [ [ {'} -> {'bi}   ||  b i "^VPBI^" VerbPrefixes  _  ]
+	 [ [ {'} -> {'bi}   ||  b i "^VPBI^" VerbPrefixes  _  ]
 	.o. [ {bi} -> 0   ||  _ "^VPBI^" VerbPrefixes  '   ]
 	.o. [ "^VPBI^" -> 0   ||  _ VerbPrefixes  '   ] ]
-	.o. [ {bibi}-> {bi}  ]  !adder for bijart verb, bibijart is not accepted in prefixed productions.
+	.o. [ {bibi}-> {bi}  ]  !added for bijart verb, bibijart is not accepted in prefixed productions.
 	]
 ];
 
 define ReorderPrefixDI [
 	[
-	[0->0] 
-	| [ 
+	 [ 
 		    [ {'} -> {'di}   ||  d i "^VPDI^" VerbPrefixes  _   ]
 		.o. [ {di} -> 0   ||  _ "^VPDI^" VerbPrefixes  '   ]
 		.o. [ "^VPDI^" -> 0   ||  _ VerbPrefixes  '   ] ]
-	| [
+	.o. [
 		    [ {'} -> {'di}   ||  d i "^PSNTDI^" VerbPrefixes  _   ]
 		.o. [ {di} -> 0   ||  _ "^PSNTDI^" VerbPrefixes  '   ]
 		.o. [ "^PSNTDI^" -> 0   ||  _ VerbPrefixes  '   ] ]
@@ -23,7 +21,5 @@ define ReorderPrefixDI [
 	
 ];
 
-define ReorderPrefixes [
-	ReorderPrefixDI  | ReorderPrefixBI
-];
+define ReorderPrefixes [ReorderPrefixDI  .o. ReorderPrefixBI] ;
 

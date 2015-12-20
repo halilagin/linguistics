@@ -12,6 +12,8 @@ define DeleteVowelsForInfinitive [
    .o. [ i -> 0 || i["^INF1^"|"^INF2^"] _ n]
    .o. [ i -> 0 || î["^INF1^"|"^INF2^"] _ n]
    .o. [ e -> 0 || _ ["^INF1^"|"^INF2^"] [i|î] n]
+   .o. [ i -> 0 || a  ["^INF1^"|"^INF2^"] _ n]
+   .o. [ î -> 0 || a  ["^INF1^"|"^INF2^"] _ n]
 ];
 
 define DeleteDoubleIForWish [
@@ -23,8 +25,9 @@ define DeleteIBeforeFutureE [
        [ î -> 0 || _ "^FTRE^" ê ]
 ];
 
-define DeleteIBeforeIE [
+define ArangeImpPhones [
        [ î -> 0 || _ "^IE^" e ]
+       .o. [ î -> e || _ "^IE^" ]
 ];
 
 define DeleteVowelWIBA [
@@ -63,6 +66,6 @@ define VerbAndFutureRule [
 	 ];
 
 define PhoneticDeletions [
-	DltIBfrEPSNT .o. DeleteVowelsForInfinitive .o. DeleteDoubleIForWish .o. DeleteIBeforeFutureE .o. DeletePrefixBIE .o. DeleteIBeforeIE .o. DeleteVowelWIBA .o. DltVowelsBfrEFTREIE .o. DltUBfrEFTREIE  
+	DltIBfrEPSNT .o. DeleteVowelsForInfinitive .o. DeleteDoubleIForWish .o. DeleteIBeforeFutureE .o. DeletePrefixBIE .o. ArangeImpPhones .o. DeleteVowelWIBA .o. DltVowelsBfrEFTREIE .o. DltUBfrEFTREIE  
 ];
 
