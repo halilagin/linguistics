@@ -1,54 +1,42 @@
 clear stack
+!read lexc vj.lexc
+!define Lexicon;
+
 
 define Symbol [
         "^["            |
         "^]"            |
-        "^VPBI^"        |
         "^VPDI^"        |
-        "^TFTR^"        |
-        "^TPST^"        |
-        "^CAND^"        |
-        "^CENE^"        |
-        "^IENE^"        |
-        "^IE^"          |
-        "^FTRE^"        |
-        "^PSNTDI^"      |
-        "^PSNTDIPOST^"  |
-        "^WIBA^"        |
-        "^WIBE^"        |
-        "^INF1^"        |
-        "^INF2^"        |
-        "^PB^"          |
-        "^PAST^"        |
-        "'"             |! prefix boundary
+        "^VPBI^"        |
         ^HXX^
  ] ;
 
 
-define VerbPrefixBI [ [{bi}"^VPBI^" ] ];
-define VerbPrefixDI [ [{di}"^VPDI^" ] ];
+define VerbPrefixBI [ {bi}"^VPBI^"  ];
+define VerbPrefixDI [ {di}"^VPDI^"  ];
 define VerbPrefixPSNTDI [ [{di}"^PSNTDI^" ] ];
 define VerbSuffixCAND [ ["^CAND^"{and} ]  ];
-define VerbSuffixCENE [ ["^CENE^"{ênê} ] ];
-define VerbSuffixIENE [ ["^IENE^"{êne} ] ];
-define VerbSuffixFTRE [ ["^FTRE^"{ê} ] ];
-define VerbSuffixIE [ ["^IE^"{e} ] ];
-define VerbSuffixWIBA [ ["^WIBA^"{iba} ] ];
-define VerbSuffixWIBE [ ["^WIBE^"{ibe} ] ];
-define VerbSuffixINF1 [ ["^INF1^"{in} ] ];
-define VerbSuffixINF2 [ ["^INF2^"{în} ] ];
+define Cleanup Symbol  -> 0;
+define Cleanup2 Symbol  -> 0;
 
-define VStemRoot [ {revî}:{revî} | {ajot}:{ajot}  ];
+define VStem [ {revi} | {ajot}  ];
 define VerbTensesAndAffixes [
-            [VStemRoot "+Past":0]
-          |  [VerbPrefixDI VStemRoot]
+              [ [ "+Past+":0] VStem ]
+	| [  [ ["+PresentAspect+" "+Past+"]:VerbPrefixDI]  VStem   ]
+	| [  [ ["+Imperative+" ]:VerbPrefixBI]  VStem   ]
 ];
 
-define Cleanup Symbol  -> 0;
 
-
-define Grammar      VerbTensesAndAffixes   .o.Cleanup  ;
+define Grammar   
+	!VStem
+	!Lexicon  
+	 VerbTensesAndAffixes  
+	.o. Cleanup  
+!	.o. Cleanup2
+;
 regex Grammar;
 
 
-save stack v.fst
+!invert net
+
+save stack vj.fst
