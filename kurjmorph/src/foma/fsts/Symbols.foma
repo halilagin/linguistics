@@ -24,16 +24,16 @@ define Symbol [
  ] ;
 
 
-define VerbPrefixBI [ [{bi}"^VPBI^" ] ];
-define VerbPrefixDI [ ["+PresentAspect+":{di}"^VPDI^" ] ];
-define VerbPrefixPSNTDI [ ["+Present+":{di}"^PSNTDI^" ] ];
-define VerbSuffixCAND [ ["+Causative++Past+":"^CAND^"{and} ]  ];
-define VerbSuffixCENE [ ["+Causative++Future+":"^CENE^"{ênê} ] ];
-define VerbSuffixIENE [ ["+Causative++Imperative+":"^IENE^"{êne} ] ];
-define VerbSuffixFTRE [ ["+Future+":"^FTRE^"{ê} ] ];
-define VerbSuffixIE [ ["+Imperative+":"^IE^"{e} ] ];
-define VerbSuffixWIBA [ ["+WishPast+":"^WIBA^"{iba} ] ];
-define VerbSuffixWIBE [ ["+WishPresent+":"^WIBE^"{ibe} ] ];
-define VerbSuffixINF1 [ ["+INF+":"^INF1^"{in} ] ];
-define VerbSuffixINF2 [ ["+INF+":"^INF2^"{în} ] ];
+define VerbPrefixBI [ {bi}"^VPBI^"  ];
+define VerbPrefixDI [ {di}"^VPDI^"  ];
+define VerbPrefixPSNTDI [ {di}"^PSNTDI^"];
+define VerbSuffixCAND [ "^CAND^"{and} ];
+define VerbSuffixCENE [ "^CENE^"{ênê} ];
+define VerbSuffixIENE [ "^IENE^"{êne} ];
+define VerbSuffixFTRE [ "^FTRE^"{ê} ];
+define VerbSuffixIE   ["^IE^"{e} ];
+define VerbSuffixWIBA [ "^WIBA^"{iba} ] ;
+define VerbSuffixWIBE [ "^WIBE^"{ibe} ] ;
+define VerbSuffixINF1 [ "^INF1^"{in} ] ;
+define VerbSuffixINF2 [ "^INF2^"{în} ] ;
 

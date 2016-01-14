@@ -12,8 +12,8 @@ source fsts/Proverbs.foma
 ! bi and di are prefixes of  imperative&aspect and aspect, respectively. These are not included in the list below, because their places change according to syntactic rules. The prefixes below are always prefixed in the same slot in the template morphology of Kurdish.
 
 source fsts/VerbPrefixes.foma
-define VStemRoot [ {revî}:{revî}      | {anî}:{anî}  ];
-!source fsts/VerbStems.foma
+!define VStemRoot [ {revî}:{revî}      | {anî}:{anî}  ];
+source fsts/VerbStems.foma
 source fsts/VerbStemsAND.foma
 source fsts/VerbTensesAndAffixes.foma
 source fsts/VerbPhonology.foma

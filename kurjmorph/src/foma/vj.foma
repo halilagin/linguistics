@@ -14,7 +14,7 @@ define Symbol [
 
 define VerbPrefixBI [ {bi}"^VPBI^"  ];
 define VerbPrefixDI [ {di}"^VPDI^"  ];
-define VerbPrefixPSNTDI [ [{di}"^PSNTDI^" ] ];
+define VerbPrefixPSNTDI [ {di}"^PSNTDI^"  ];
 define VerbSuffixCAND [ ["^CAND^"{and} ]  ];
 define Cleanup Symbol  -> 0;
 define Cleanup2 Symbol  -> 0;
@@ -23,7 +23,7 @@ define VStem [ {revi} | {ajot}  ];
 define VerbTensesAndAffixes [
               [ [ "+Past+":0] VStem ]
 	| [  [ ["+PresentAspect+" "+Past+"]:VerbPrefixDI]  VStem   ]
-	| [  [ ["+Imperative+" ]:VerbPrefixBI]  VStem   ]
+	| [  [ ["+Imperative+" ]:VerbPrefixBI]   VStem   ]
 ];
 
 

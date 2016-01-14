@@ -1,0 +1,18 @@
+Multichar_Symbols +N +V +PastPart +Past +PresPart +3P +Sg +Pl DI+ @P.DI.ON@ @D.DI@ @C.DI@
+
+LEXICON Root
+@P.DI.ON@DI+:@P.DI.ON@di	DiVStem;
+VRoot;
+
+LEXICON DiVStem
++PresentAspect:0 VRoot;
+
+LEXICON VRoot
+ajot VStem;
+revi VStem;
+
+
+LEXICON VStem
++V:0  #;
+
+
