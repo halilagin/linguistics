@@ -31,7 +31,7 @@ define ArangeImpPhones [
 ];
 
 define DeleteVowelWIBA [
-       [ i -> 0 || [C & ~y]  [a|e] ["^WIBA^"|"^WIBE^"] _ b [a|e] ]
+       [ i -> 0 || y a ["^WIBA^"|"^WIBE^"] _ b [a|e] ]
        .o. [ e -> 0 || y _ ["^WIBE^"|"^WIBA^"] i b [e|a] ]
 ];
 
@@ -64,6 +64,8 @@ define DltIBfrEPSNT [
 define VerbAndFutureRule [ 
 		[  [.a n d.] -> e n e ||  "^VPBI^" VStemRootNoAnd "^CAND^"  _ .#. ]
 	 ];
+
+
 
 define PhoneticDeletions [
 	DltIBfrEPSNT .o. DeleteVowelsForInfinitive .o. DeleteDoubleIForWish .o. DeleteIBeforeFutureE .o. DeletePrefixBIE .o. ArangeImpPhones .o. DeleteVowelWIBA .o. DltVowelsBfrEFTREIE .o. DltUBfrEFTREIE  

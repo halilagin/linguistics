@@ -19,7 +19,7 @@ define IrrPSNTVerbDAGIRT [
 
 define IrregularVerbPSNT [
 	[  {ajot} -> {ajo} ||   "^PSNTDI^" _    ]
-	.o. [  a -> e  ||  _ "^PSNTDIPOST^"     ]
+	!.o. [  a -> e  ||  _ "^PSNTDIPOST^"     ]
 	.o. IrrPSNTVerbAVET
 	.o. IrrPSNTVerbAXAFT
 	.o. IrrPSNTVerbAXI
